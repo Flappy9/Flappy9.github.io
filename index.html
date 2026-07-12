@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title data-i18n="pageTitle">進学可能性チェッカー</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand-mini">
+      <span class="brand-mark">MAP</span>
+      <span class="brand-name" data-i18n="appTitle">進学可能性チェッカー</span>
+    </div>
+    <button id="lang-toggle" class="lang-toggle" type="button">EN</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-content">
+    <div class="hero-emblem" aria-hidden="true">
+      <span class="hero-emblem-ticks"></span>
+      <span class="hero-emblem-ring"></span>
+      <span class="hero-emblem-mark"></span>
+    </div>
+    <p class="hero-eyebrow" data-i18n="heroEyebrow">世界の大学進学インサイト</p>
+    <h1 class="hero-title" data-i18n="heroTitle">世界の大学進学を、<br class="hero-break" />数字で見える化する。</h1>
+    <p class="hero-subtitle" data-i18n="heroSubtitle">
+      MAP・SAT・AP・IB・TOEFLのスコアから、米国・英国・日本の大学進学可能性を統計的に試算します。
+    </p>
+  </div>
+</section>
+
+<main>
+  <div class="campus-photo-band" aria-hidden="true"></div>
+
+  <div class="disclaimer-banner">
+    <span class="disclaimer-icon">!</span>
+    <p data-i18n="disclaimerBody">
+      このツールはNWEA MAP Growthのスコアを統計的に換算した<strong>目安</strong>を示すものであり、
+      実際の合否を保証・予測するものではありません。合否はGPA・エッセイ・課外活動・推薦状・
+      実際のAP/IBスコアなど、MAPスコア以外の要素にも大きく左右されます。
+    </p>
+  </div>
+
+  <section class="input-section">
+    <h2 data-i18n="inputHeading">スコアを入力</h2>
+    <form id="map-form">
+      <div class="field-group-label" data-i18n="mapInfoLabel">MAP受験情報(MAPスコアを入力する場合)</div>
+      <div class="form-grid form-grid-2">
+        <div class="field">
+          <label for="grade" data-i18n="gradeLabel">学年</label>
+          <select id="grade" required>
+            <option value="0">Kindergarten</option>
+            <option value="1">Grade 1</option>
+            <option value="2">Grade 2</option>
+            <option value="3">Grade 3</option>
+            <option value="4">Grade 4</option>
+            <option value="5">Grade 5</option>
+            <option value="6">Grade 6</option>
+            <option value="7">Grade 7</option>
+            <option value="8">Grade 8</option>
+            <option value="9">Grade 9</option>
+            <option value="10">Grade 10</option>
+            <option value="11" selected>Grade 11</option>
+            <option value="12">Grade 12</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="term" data-i18n="termLabel">受験時期</label>
+          <select id="term" required>
+            <option value="fall" data-i18n="termFall">秋 (Fall)</option>
+            <option value="winter" data-i18n="termWinter">冬 (Winter)</option>
+            <option value="spring" selected data-i18n="termSpring">春 (Spring)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field-group-label"><span data-i18n="ritLabel">RITスコア</span><span class="optional" data-i18n="optionalTag">任意</span></div>
+      <div class="form-grid form-grid-3">
+        <div class="field">
+          <label for="reading" data-i18n="readingLabel">Reading</label>
+          <input type="number" id="reading" min="100" max="300" />
+        </div>
+        <div class="field">
+          <label for="math" data-i18n="mathLabel">Math</label>
+          <input type="number" id="math" min="100" max="300" />
+        </div>
+        <div class="field">
+          <label for="languageUsage" data-i18n="luLabel">Language Usage</label>
+          <input type="number" id="languageUsage" min="100" max="300" />
+        </div>
+      </div>
+
+      <details class="extra-scores">
+        <summary data-i18n="extraScoresSummary">その他のスコアを追加(SAT・ACT・AP・IB・TOEFL)</summary>
+        <div class="extra-scores-body">
+          <p class="extra-scores-lead" data-i18n="extraScoresLead">
+            成長にあわせて受けた試験の実スコアがあれば入力してください。MAPは未入力でも構いません
+            (入力された項目だけを使って判定します)。
+          </p>
+
+          <div class="field-group-label"><span data-i18n="satActLabel">SAT・ACT実スコア</span><span class="optional" data-i18n="optionalTag">任意</span></div>
+          <div class="form-grid form-grid-2">
+            <div class="field">
+              <label for="satActual" data-i18n="satLabel">SAT合計</label>
+              <input type="number" id="satActual" min="400" max="1600" />
+            </div>
+            <div class="field">
+              <label for="actActual" data-i18n="actLabel">ACT合計</label>
+              <input type="number" id="actActual" min="1" max="36" />
+            </div>
+          </div>
+
+          <div class="field-group-label"><span data-i18n="apLabel">AP試験(科目数)</span><span class="optional" data-i18n="optionalTag">任意</span></div>
+          <div class="form-grid form-grid-3">
+            <div class="field">
+              <label for="apFive" data-i18n="apFiveLabel">5点だった科目数</label>
+              <input type="number" id="apFive" min="0" max="20" />
+            </div>
+            <div class="field">
+              <label for="apFour" data-i18n="apFourLabel">4点だった科目数</label>
+              <input type="number" id="apFour" min="0" max="20" />
+            </div>
+            <div class="field">
+              <label for="apThree" data-i18n="apThreeLabel">3点だった科目数</label>
+              <input type="number" id="apThree" min="0" max="20" />
+            </div>
+          </div>
+
+          <div class="field-group-label"><span data-i18n="ibToeflLabel">IB・TOEFL</span><span class="optional" data-i18n="optionalTag">任意</span></div>
+          <div class="form-grid form-grid-2">
+            <div class="field">
+              <label for="ibScore" data-i18n="ibLabel">IB合計スコア(満点45)</label>
+              <input type="number" id="ibScore" min="24" max="45" />
+            </div>
+            <div class="field">
+              <label for="toefl" data-i18n="toeflLabel">TOEFL iBT合計</label>
+              <input type="number" id="toefl" min="0" max="120" />
+            </div>
+          </div>
+          <p class="extra-scores-note" data-i18n="toeflScaleNote">
+            ※ TOEFLは2026年1月にスコア尺度が新方式へ移行中のため、ここでは従来の0〜120点スケールで入力してください。
+          </p>
+        </div>
+      </details>
+
+      <button type="submit" data-i18n="submitButton">判定する</button>
+    </form>
+  </section>
+
+  <section id="results" class="results-section hidden">
+    <h2 data-i18n="resultsHeading">判定結果</h2>
+    <div id="summary" class="summary"></div>
+
+    <div class="country-block">
+      <h3><span class="country-tag tag-us">US</span><span data-i18n="usHeading">米国</span></h3>
+      <div id="us-results"></div>
+    </div>
+
+    <div class="country-block">
+      <h3><span class="country-tag tag-uk">UK</span><span data-i18n="ukHeading">英国</span></h3>
+      <div id="uk-results"></div>
+    </div>
+
+    <div class="country-block">
+      <h3><span class="country-tag tag-jp">JP</span><span data-i18n="jpHeading">日本</span></h3>
+      <div id="jp-results"></div>
+    </div>
+  </section>
+
+  <details class="methodology">
+    <summary data-i18n="methodologySummary">判定方法について(データ出典・前提条件・限界)</summary>
+    <div class="methodology-body">
+      <h4 data-i18n="flowHeading">計算の流れ</h4>
+      <ol>
+        <li data-i18n="flow1">入力されたRITスコアを、NWEA公表の学年・時期別 平均値/標準偏差(2025年版Norms)に基づきzスコアに変換します。</li>
+        <li data-i18n="flow2">Reading・Math(・任意でLanguage Usage)のzスコアを平均し、総合zスコアを算出します。</li>
+        <li data-i18n="flow3">米国のSAT/ACT推定値は「実際のSATスコア」→「実際のACTスコアから換算」→「MAPスコアからの推定」の優先順位で決定します(実スコアがあればそれを優先します)。</li>
+        <li data-i18n="flow4">日本の偏差値は「50 + 10×z」という統計的定義に基づき、MAPの総合zスコアから直接算出します(SAT/AP/IBを偏差値に変換する公式な根拠がないため、日本の判定はMAPスコアがある場合のみ行います)。</li>
+        <li data-i18n="flow5">米国・日本の大学は、推定スコアと各大学の合格者レンジ/偏差値を比較し、安全圏・実力圏・挑戦圏・圏外の4区分に分類します。</li>
+        <li data-i18n="flow6">英国は大学ごとに評価可能な基準(SAT/ACT・AP試験・IBスコア)をすべて確認し、入力されている中で最も有利な区分を採用します。AP試験は「5点=1.0点・4点=0.7点・3点=0.4点」で加重合成し、大学が公表する組み合わせのうち最も緩い基準と比較します。評価できる情報が一つもない大学は「判定に必要な情報が不足」として区別します。</li>
+        <li data-i18n="flow7">TOEFLは順位付けには使わず、各大学・階層の公式/目安の最低点を下回っている場合にのみ注記として表示します。</li>
+      </ol>
+      <h4 data-i18n="limitsHeading">重要な限界</h4>
+      <ul>
+        <li data-i18n="limit1">NWEAはMAPスコアとSAT/ACTの完全な対応表を公表していません。ここではMAPのパーセンタイル(同学年集団内での相対位置)が、SAT/ACTの全米パーセンタイルとおおむね対応するという仮定を用いています。</li>
+        <li data-i18n="limit2">Grade 5〜8のMAPスコアは、将来のSAT/ACT年齢時点まで同じ相対順位が続いた場合の推定であり、不確実性が大きくなります。</li>
+        <li data-i18n="limit3">米国大学の合格者レンジは、test-optional化以降のスコア提出者バイアス(提出者は非提出者より高スコアな傾向)により、実態よりやや高めに出ている可能性があります。</li>
+        <li data-i18n="limit4">英国大学のAP/IB基準はコース(専攻)により細かく異なりますが、ここでは代表的な組み合わせに単純化しています。特にKing's College LondonとUniversity of EdinburghのIB基準は公式な幅が非常に広く、精度が粗い点にご注意ください。</li>
+        <li data-i18n="limit5">IBとSAT/ACTの間に公式な換算表は存在しないため、両者は変換せず独立したシグナルとして扱っています。同様にAP・IBスコアを米国大学や日本の偏差値判定には用いていません(公式な換算根拠がないため)。</li>
+        <li data-i18n="limit6">TOEFLは2026年1月にスコア尺度が新方式(1.0〜6.0)へ移行中で、Cambridgeなど一部大学は新形式TOEFLを受け付けない可能性があります。ここでの基準値は従来の0〜120点スケールに基づいています。</li>
+        <li data-i18n="limit7">日本の大学はIBの数値基準をほとんど公表していないため、日本の判定にはIBスコアを使わず、IB入試ルートの有無のみを参考情報として表示しています。</li>
+        <li data-i18n="limit8">日本の偏差値は模試提供元(河合塾・駿台・東進など)により数値が異なります。ここでの数値は複数の集計サイトを突き合わせた概算値です。</li>
+      </ul>
+    </div>
+  </details>
+</main>
+
+<footer class="site-footer">
+  <p data-i18n="footerText">データ出典: NWEA MAP Growth Norms (2025) / College Board SAT Percentile / ACT National Ranks / 各大学Common Data Set等(2026年7月時点調査)</p>
+</footer>
+
+<script src="data.js"></script>
+<script src="i18n.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
