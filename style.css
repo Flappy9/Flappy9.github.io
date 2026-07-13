@@ -1,0 +1,944 @@
+:root {
+  /* Brand: navy / gold / white (see project brief) */
+  --color-navy: #0a1a2f;
+  --color-navy-deep: #050d19;
+  --color-navy-light: #14284a;
+  --color-gold: #d4af37;
+  --color-gold-bright: #e6c65a;
+  --color-gold-soft: rgba(212, 175, 55, 0.16);
+
+  --color-bg: #faf9f6;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f4f2ec;
+  --color-surface-wash: rgba(255, 255, 255, 0.91);
+  --color-text: #0a1a2f;
+  --color-text-muted: #5c6470;
+  --color-border: #e7e3d8;
+  --color-border-strong: #d6d1c2;
+
+  --color-brand: var(--color-navy);
+  --color-brand-dark: var(--color-navy-deep);
+  --color-accent: var(--color-gold);
+  --color-accent-soft: var(--color-gold-soft);
+  --color-link: var(--color-navy);
+
+  /* Status tones for headings/labels shown on light card backgrounds.
+     Strictly derived from navy/gold/white (tints, shades, opacity) — no new hues.
+     Safety/Reach share the same "gold family" text color; they are told apart by
+     dot style (filled vs. outlined) and by their section label text. */
+  --color-safety: #8a6a1a;
+  --color-safety-soft: rgba(212, 175, 55, 0.1);
+  --color-match: var(--color-navy);
+  --color-match-soft: rgba(10, 26, 47, 0.05);
+  --color-reach: #8a6a1a;
+  --color-reach-soft: rgba(212, 175, 55, 0.05);
+  --color-outofreach: #79808d;
+  --color-outofreach-soft: rgba(121, 128, 141, 0.1);
+  --color-excluded: #79808d;
+  --color-excluded-soft: rgba(121, 128, 141, 0.1);
+
+  --color-notice: #8a6a1a;
+  --color-notice-soft: rgba(212, 175, 55, 0.08);
+  --color-notice-border: rgba(212, 175, 55, 0.35);
+
+  /* University result cards: a fixed navy+gold "seal" treatment that does not
+     change with the light/dark site theme (same idea as the hero). */
+  --card-navy-bg: #132540;
+  --card-navy-bg-hover: #17294a;
+  --card-navy-border: rgba(212, 175, 55, 0.22);
+  --card-navy-text: #f5f1e6;
+  --card-navy-text-muted: rgba(245, 241, 230, 0.64);
+  --card-accent-safety: var(--color-gold);
+  --card-accent-match: #ffffff;
+  --card-accent-reach: rgba(212, 175, 55, 0.45);
+  --card-accent-outofreach: #6b7686;
+
+  --shadow-sm: 0 2px 8px rgba(10, 26, 47, 0.08);
+  --shadow-md: 0 6px 20px rgba(10, 26, 47, 0.1), 0 2px 6px rgba(10, 26, 47, 0.06);
+  --radius-lg: 12px;
+  --radius-md: 10px;
+  --radius-sm: 8px;
+
+  --font-heading: "Playfair Display", "Noto Serif JP", serif;
+  --font-body: "Inter", "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: var(--color-navy);
+    --color-surface: #10203a;
+    --color-surface-alt: #16294a;
+    --color-surface-wash: rgba(16, 32, 58, 0.88);
+    --color-text: #f3efe4;
+    --color-text-muted: #a9b2c4;
+    --color-border: #24395a;
+    --color-border-strong: #33507a;
+
+    --color-brand: #050d19;
+    --color-brand-dark: #030811;
+    --color-accent: var(--color-gold-bright);
+    --color-accent-soft: rgba(230, 198, 90, 0.18);
+    --color-link: var(--color-gold-bright);
+
+    --color-safety: var(--color-gold-bright);
+    --color-safety-soft: rgba(230, 198, 90, 0.12);
+    --color-match: #f3efe4;
+    --color-match-soft: rgba(243, 239, 228, 0.08);
+    --color-reach: var(--color-gold-bright);
+    --color-reach-soft: rgba(230, 198, 90, 0.06);
+    --color-outofreach: #a9b2c4;
+    --color-outofreach-soft: rgba(169, 178, 196, 0.12);
+    --color-excluded: #a9b2c4;
+    --color-excluded-soft: rgba(169, 178, 196, 0.12);
+
+    --color-notice: var(--color-gold-bright);
+    --color-notice-soft: rgba(230, 198, 90, 0.1);
+    --color-notice-border: rgba(230, 198, 90, 0.3);
+
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.35);
+    --shadow-md: 0 6px 24px rgba(0, 0, 0, 0.45);
+  }
+}
+
+:root[data-theme="dark"] {
+  --color-bg: var(--color-navy);
+  --color-surface: #10203a;
+  --color-surface-alt: #16294a;
+  --color-surface-wash: rgba(16, 32, 58, 0.88);
+  --color-text: #f3efe4;
+  --color-text-muted: #a9b2c4;
+  --color-border: #24395a;
+  --color-border-strong: #33507a;
+  --color-brand: #050d19;
+  --color-brand-dark: #030811;
+  --color-accent: var(--color-gold-bright);
+  --color-accent-soft: rgba(230, 198, 90, 0.18);
+  --color-link: var(--color-gold-bright);
+  --color-safety: var(--color-gold-bright);
+  --color-safety-soft: rgba(230, 198, 90, 0.12);
+  --color-match: #f3efe4;
+  --color-match-soft: rgba(243, 239, 228, 0.08);
+  --color-reach: var(--color-gold-bright);
+  --color-reach-soft: rgba(230, 198, 90, 0.06);
+  --color-outofreach: #a9b2c4;
+  --color-outofreach-soft: rgba(169, 178, 196, 0.12);
+  --color-excluded: #a9b2c4;
+  --color-excluded-soft: rgba(169, 178, 196, 0.12);
+  --color-notice: var(--color-gold-bright);
+  --color-notice-soft: rgba(230, 198, 90, 0.1);
+  --color-notice-border: rgba(230, 198, 90, 0.3);
+}
+
+:root[data-theme="light"] {
+  --color-bg: #faf9f6;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f4f2ec;
+  --color-surface-wash: rgba(255, 255, 255, 0.91);
+  --color-text: #0a1a2f;
+  --color-text-muted: #5c6470;
+  --color-border: #e7e3d8;
+  --color-border-strong: #d6d1c2;
+  --color-brand: var(--color-navy);
+  --color-brand-dark: var(--color-navy-deep);
+  --color-accent: var(--color-gold);
+  --color-accent-soft: var(--color-gold-soft);
+  --color-link: var(--color-navy);
+  --color-safety: #8a6a1a;
+  --color-safety-soft: rgba(212, 175, 55, 0.1);
+  --color-match: var(--color-navy);
+  --color-match-soft: rgba(10, 26, 47, 0.05);
+  --color-reach: #8a6a1a;
+  --color-reach-soft: rgba(212, 175, 55, 0.05);
+  --color-outofreach: #79808d;
+  --color-outofreach-soft: rgba(121, 128, 141, 0.1);
+  --color-excluded: #79808d;
+  --color-excluded-soft: rgba(121, 128, 141, 0.1);
+  --color-notice: #8a6a1a;
+  --color-notice-soft: rgba(212, 175, 55, 0.08);
+  --color-notice-border: rgba(212, 175, 55, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  font-family: var(--font-body);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+}
+
+main {
+  position: relative;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+}
+
+/* ---------- Campus photo band ----------
+   Sits behind the disclaimer banner and the input card only (their own opaque
+   backgrounds keep text fully legible). Anchored to the top of main so it doesn't
+   stretch down the long results list. */
+
+.campus-photo-band {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100vw;
+  height: 900px;
+  transform: translateX(-50%);
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.campus-photo-band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("campus.png");
+  background-size: cover;
+  background-position: center 35%;
+  background-repeat: no-repeat;
+}
+
+.campus-photo-band::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 0%, var(--color-bg) 96%);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  letter-spacing: 0.01em;
+}
+
+/* ---------- Top bar ---------- */
+
+.topbar {
+  background: var(--color-brand);
+  padding: 0.8rem 1.5rem;
+}
+
+.topbar-inner {
+  max-width: 820px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.brand-mini {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-width: 0;
+}
+
+.brand-mark {
+  flex-shrink: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: var(--color-gold);
+  color: var(--color-navy-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.brand-name {
+  color: #fff;
+  font-size: 0.92rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lang-toggle {
+  flex-shrink: 0;
+  background: transparent;
+  border: 1px solid rgba(212, 175, 55, 0.55);
+  color: var(--color-gold);
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.lang-toggle:hover {
+  background: var(--color-gold);
+  color: var(--color-navy-deep);
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 82% 8%, var(--color-navy-light) 0%, var(--color-navy) 45%, var(--color-navy-deep) 100%);
+  padding: 1.25rem 1.5rem 1.5rem;
+  text-align: center;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(212, 175, 55, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212, 175, 55, 0.08) 1px, transparent 1px);
+  background-size: 46px 46px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 90% at 50% 30%, black 0%, transparent 75%);
+  mask-image: radial-gradient(ellipse 70% 90% at 50% 30%, black 0%, transparent 75%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* Abstract "academic seal" emblem — pure CSS, no imagery. A tick-mark ring
+   (repeating-conic-gradient) plus two circles and a center mark, evoking a
+   compass/medallion rather than any specific institution's crest. */
+.hero-emblem {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 0.6rem;
+  border: 1px solid rgba(212, 175, 55, 0.32);
+  border-radius: 50%;
+}
+
+.hero-emblem-ticks {
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  background: repeating-conic-gradient(from 0deg, rgba(212, 175, 55, 0.85) 0deg 1.1deg, transparent 1.1deg 15deg);
+  -webkit-mask-image: radial-gradient(circle, transparent 66%, black 67%, black 82%, transparent 83%);
+  mask-image: radial-gradient(circle, transparent 66%, black 67%, black 82%, transparent 83%);
+}
+
+.hero-emblem-ring {
+  position: absolute;
+  inset: 30%;
+  border: 1px solid rgba(212, 175, 55, 0.55);
+  border-radius: 50%;
+}
+
+.hero-emblem-mark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 11px;
+  height: 11px;
+  background: var(--color-gold);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.hero-eyebrow {
+  margin: 0 0 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+.hero-title {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.6rem;
+  line-height: 1.25;
+  color: #fff;
+  letter-spacing: 0.01em;
+}
+
+.hero-subtitle {
+  margin: 0 auto;
+  max-width: 34rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+/* ---------- Disclaimer banner ---------- */
+
+.disclaimer-banner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  background: var(--color-notice-soft);
+  border: 1px solid var(--color-notice-border);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1.1rem;
+  margin: 1rem 0 1rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.disclaimer-icon {
+  flex-shrink: 0;
+  width: 1.3rem;
+  height: 1.3rem;
+  border-radius: 50%;
+  background: var(--color-notice);
+  color: var(--color-navy-deep);
+  font-size: 0.78rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.1rem;
+}
+
+.disclaimer-banner p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--color-text);
+}
+
+/* ---------- Cards ---------- */
+
+.input-section,
+.results-section,
+.methodology {
+  position: relative;
+  z-index: 1;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 2px 8px rgba(10, 26, 47, 0.1);
+  padding: 1.85rem 2.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.input-section h2,
+.results-section h2 {
+  position: relative;
+  margin: 0 0 1.4rem;
+  padding-bottom: 0.7rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.input-section h2::after,
+.results-section h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 46px;
+  height: 3px;
+  background: var(--color-gold);
+}
+
+/* ---------- Form ---------- */
+
+.field-group-label {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  margin: 1.1rem 0 0.6rem;
+}
+
+.field-group-label:first-of-type {
+  margin-top: 0;
+}
+
+.form-grid {
+  display: grid;
+  gap: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+.form-grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.form-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.field label {
+  font-size: 0.82rem;
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.field select,
+.field input {
+  width: 100%;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.field select:focus,
+.field input:focus {
+  outline: none;
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 3px var(--color-accent-soft);
+}
+
+.required {
+  color: #b3423a;
+  font-size: 0.72rem;
+  margin-left: 0.35rem;
+  font-weight: 600;
+}
+
+.optional {
+  color: var(--color-text-muted);
+  font-size: 0.72rem;
+  margin-left: 0.35rem;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+button[type="submit"] {
+  background: var(--color-navy);
+  color: var(--color-gold);
+  border: 1px solid var(--color-navy);
+  padding: 0.8rem 2.1rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  margin-top: 0.75rem;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+button[type="submit"]:hover {
+  background: var(--color-navy-light);
+}
+
+button[type="submit"]:active {
+  transform: translateY(1px);
+}
+
+.hidden {
+  display: none;
+}
+
+/* ---------- Extra scores (SAT/AP/IB/TOEFL) ---------- */
+
+.extra-scores {
+  margin: 1rem 0 0.5rem;
+  border-top: 1px solid var(--color-border);
+  padding-top: 0.9rem;
+}
+
+.extra-scores summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-link);
+  list-style: none;
+}
+
+.extra-scores summary::-webkit-details-marker {
+  display: none;
+}
+
+.extra-scores summary::before {
+  content: "▸";
+  display: inline-block;
+  margin-right: 0.45rem;
+  color: var(--color-gold);
+  transition: transform 0.15s ease;
+}
+
+.extra-scores[open] summary::before {
+  transform: rotate(90deg);
+}
+
+.extra-scores-body {
+  margin-top: 1rem;
+}
+
+.extra-scores-lead {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  margin: 0 0 1.1rem;
+}
+
+.extra-scores-note {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  margin-top: 0.6rem;
+}
+
+/* ---------- Insufficient-info messages ---------- */
+
+.insufficient-note {
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+  background: var(--color-surface-alt);
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--radius-md);
+  padding: 0.9rem 1rem;
+  margin: 0;
+}
+
+/* ---------- Summary ---------- */
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.85rem;
+  margin-bottom: 0.9rem;
+}
+
+.summary-item {
+  position: relative;
+  background: var(--color-surface-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.05rem 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  overflow: hidden;
+}
+
+.summary-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--color-gold);
+}
+
+.summary-label {
+  font-size: 0.72rem;
+  line-height: 1.35;
+  height: 2.95rem;
+  overflow: hidden;
+  color: var(--color-text-muted);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.summary-value {
+  font-family: var(--font-heading);
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: 0.005em;
+}
+
+.grade-note {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  margin: 0.9rem 0 0;
+  padding-top: 0.9rem;
+  border-top: 1px dashed var(--color-border);
+}
+
+/* ---------- Country blocks ---------- */
+
+.country-block {
+  margin-top: 2.5rem;
+}
+
+.country-block h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 1.2rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 2px solid var(--color-gold);
+}
+
+.country-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.1rem;
+  padding: 0.18rem 0.4rem;
+  border-radius: 5px;
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--color-gold);
+  background: var(--color-navy);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+}
+
+/* ---------- Category groups & school rows (card style) ---------- */
+
+.category-group {
+  margin: 1.3rem 0;
+}
+
+.category-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.7rem;
+}
+
+.cat-dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.cat-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.cat-count {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.school-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+/* University cards: fixed navy + gold "seal" treatment (see --card-navy-* vars),
+   independent of the page's light/dark theme — same idea as the hero. */
+.school-row {
+  padding: 0.9rem 1.1rem;
+  border: 1px solid var(--card-navy-border);
+  border-left: 3px solid transparent;
+  border-radius: var(--radius-md);
+  background: var(--card-navy-bg);
+  box-shadow: 0 2px 10px rgba(5, 13, 25, 0.25);
+  transition: box-shadow 0.15s ease, transform 0.15s ease, background 0.15s ease;
+}
+
+.school-row:hover {
+  background: var(--card-navy-bg-hover);
+  box-shadow: 0 6px 18px rgba(5, 13, 25, 0.32);
+  transform: translateY(-1px);
+}
+
+.school-row-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.school-name-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-width: 0;
+}
+
+.school-badge {
+  flex-shrink: 0;
+  height: 1.85rem;
+  min-width: 1.85rem;
+  padding: 0 0.45rem;
+  border-radius: 999px;
+  background: rgba(212, 175, 55, 0.08);
+  border: 1.5px solid var(--color-gold);
+  color: var(--color-gold);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.school-name {
+  font-weight: 500;
+  font-size: 0.92rem;
+  color: var(--card-navy-text);
+}
+
+.school-detail {
+  flex-shrink: 0;
+  font-size: 0.8rem;
+  color: var(--card-navy-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.school-note {
+  font-size: 0.78rem;
+  color: var(--card-navy-text-muted);
+  margin-top: 0.5rem;
+  padding-left: calc(1.85rem + 0.7rem);
+  line-height: 1.55;
+}
+
+/* Heading dots/labels sit on the light card shell — tonal gold/navy/gray only.
+   Safety = filled gold dot, Reach = hollow gold ring (same hue, different fill). */
+.category-heading.cat-safety .cat-dot { background: var(--color-gold); }
+.category-heading.cat-match .cat-dot { background: var(--color-navy); }
+.category-heading.cat-reach .cat-dot {
+  background: transparent;
+  border: 1.5px solid var(--color-gold);
+  width: 0.42rem;
+  height: 0.42rem;
+}
+.category-heading.cat-outOfReach .cat-dot,
+.category-heading.cat-excluded .cat-dot {
+  background: var(--color-outofreach);
+}
+.category-heading.cat-safety .cat-label { color: var(--color-safety); }
+.category-heading.cat-match .cat-label { color: var(--color-match); }
+.category-heading.cat-reach .cat-label { color: var(--color-reach); }
+.category-heading.cat-outOfReach .cat-label,
+.category-heading.cat-excluded .cat-label { color: var(--color-outofreach); }
+
+/* University card left-border accents — filled/hollow/muted variants of gold + white. */
+.school-row.cat-safety { border-left-color: var(--card-accent-safety); }
+.school-row.cat-match { border-left-color: var(--card-accent-match); }
+.school-row.cat-reach { border-left-color: var(--card-accent-reach); }
+.school-row.cat-outOfReach,
+.school-row.cat-excluded { border-left-color: var(--card-accent-outofreach); }
+
+.uk-excluded-subhead {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  margin: -0.15rem 0 0.6rem;
+}
+
+/* ---------- Methodology ---------- */
+
+.methodology summary {
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.98rem;
+  list-style: none;
+}
+
+.methodology summary::-webkit-details-marker {
+  display: none;
+}
+
+.methodology summary::before {
+  content: "▸";
+  display: inline-block;
+  margin-right: 0.5rem;
+  color: var(--color-gold);
+  transition: transform 0.15s ease;
+}
+
+.methodology[open] summary::before {
+  transform: rotate(90deg);
+}
+
+.methodology-body {
+  margin-top: 1.2rem;
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+}
+
+.methodology-body h4 {
+  color: var(--color-text);
+  font-size: 1rem;
+  margin-bottom: 0.6rem;
+}
+
+.methodology-body ol,
+.methodology-body ul {
+  padding-left: 1.2rem;
+}
+
+.methodology-body li {
+  margin-bottom: 0.5rem;
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  padding: 1rem 1.5rem 3rem;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 3.75rem 1.25rem 3.5rem;
+  }
+  .hero-title {
+    font-size: 1.7rem;
+  }
+  .hero-subtitle {
+    font-size: 0.88rem;
+  }
+  .input-section,
+  .results-section,
+  .methodology {
+    padding: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .form-grid-2,
+  .form-grid-3 {
+    grid-template-columns: 1fr;
+  }
+  .summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .school-row-main {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+  .school-note {
+    padding-left: 0;
+  }
+  .brand-name {
+    max-width: 9rem;
+  }
+}
